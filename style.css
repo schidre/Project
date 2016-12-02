@@ -1,0 +1,31 @@
+body{
+	font-size:12px;
+}
+.navbar-inverse {
+    background-color: rgb(19, 89, 95);
+    border-color: #13595f;
+    border-radius: 0;
+}
+h3.head {
+    color: white;
+    line-height: 3;
+    margin: 0;
+    padding-left: 15px;
+}
+
+
+/***********************************************/
+.grid {
+  width: 100%;
+  margin: 30px 0px;
+  height: 420px!important;
+}
+.ui-grid-column-menu-button .ui-grid-icon-angle-down{
+	display:none;
+}
+.ui-grid-viewport {
+    width: 100%!important;
+    overflow:auto!important;
+    height: 392px!important;
+}
+/**********************************************/

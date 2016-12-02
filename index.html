@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.css"> 
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script> 
+  <script src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"></script> 
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="app.js"></script>
+</head>
+<style type="text/css">
+
+</style>
+<body ng-controller="myCtrl">
+
+<nav class="navbar navbar-inverse">
+<h3 class="head">Kogentix</h3>
+</nav>
+<section>
+	<div class="col-md-12">
+		<div class="col-md-3">
+			<label>Market</label><br>
+			<select class="form-control">
+				<option ng-repeat="x in myData | unique : 'Market'" value="{{operator.RowNumber}}">{{x.Market}}</option>
+			</select>
+		</div>
+		<div class="col-md-3">
+			<label>Confidence Level</label><br>
+			<select class="form-control">
+				<option>1</option>
+				<option>2</option>
+			</select>
+		</div>
+		<div class="col-md-6">
+			<label>Product</label><br>
+			<input type="text" class="form-control" placeholder="search">
+		</div>
+	</div>
+	<br>
+	<div class="col-md-12">
+		<div ui-grid="{ data: myData }" class="grid"></div>
+	</div>
+</section>
+
+
+</body>
+</html>
