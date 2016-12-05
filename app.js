@@ -19,4 +19,6 @@ app.controller('myCtrl', function($scope, $http) {
 	$http.get('convertcsv.json').success(function(data) {
 	    $scope.myData = data;
 	});
+
+	$scope.boston = 
 });
