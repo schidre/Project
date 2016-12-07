@@ -4,10 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.css"> 
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script> 
-  <script src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"></script> 
-  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -15,47 +12,62 @@
   <link rel="stylesheet" type="text/css" href="style.css">
   <script type="text/javascript" src="app.js"></script>
 </head>
-<style type="text/css">
+    <style>
+      .table-content{width: 100%; height: 450px;overflow: scroll; margin-top: 30px;}
 
-</style>
-<body ng-controller="myCtrl">
+    </style>
+  <body>
+    <div ng-controller="MainCtrl">
+      <nav class="navbar navbar-inverse">
+        <h3 class="head">Kogentix</h3>
+      </nav>
+      <section>
+        <div class="col-md-12">
+          <div class="col-md-3">
+            <label>Market</label><br>
+            <select class="form-control"  ng-model="searchlist.Market">
+                <option  ng-repeat="m in market" value="{{m.name}}">{{m.name}}</option>
+              </select>
+          </div>
+          <div class="col-md-3">
+            <label>Confidence Level</label><br>
+            <select class="form-control" ng-model="searchlist.Confidence_Level">
+                <option  ng-repeat="c in level" value="{{c.level}}">{{c.level}}</option>
+              </select>
+          </div>
+          <div class="col-md-6">
+            <label>Product</label><br>
+            <input type="text" class="form-control" placeholder="search" ng-model="search">
+          </div>
+        </div>
+        <br>
+        <div class="col-md-12 table-content"">
+          <table border="1" class="table table-bordered" >
+              <tr>
+                <th>RowNumber</th>
+                <th>Market</th>
+                <th>Antecedent_Products</th>
+                <th>Consequent_Product</th>
+                <th>Confidence_Value</th>
+                <th>Confidence_Level</th>
+                <th>Lift</th>
+                <th>Antecedent_Support</th>
+              </tr>
+              <tr ng-repeat="x in myData | filter: searchlist | filter : search">
+                <td>{{x.RowNumber}}</td>
+                <td>{{x.Market}}</td>
+                <td>{{x.Antecedent_Products}}</td>
+                <td>{{x.Consequent_Product}}</td>
+                <td>{{x.Confidence_Value}}</td>
+                <td>{{x.Confidence_Level}}</td>
+                <td>{{x.Lift}}</td>
+                <td>{{x.Antecedent_Support}}</td>
+              </tr>
+          </table>
+        </div>
+      </section>
+      
+    </div>
+  </body>
 
-<nav class="navbar navbar-inverse">
-<h3 class="head">Kogentix</h3>
-</nav>
-<section>
-	<div class="col-md-12">
-		<div class="col-md-3">
-			<label>Market</label><br>
-			<select class="form-control">
-				<option>Select Market</option>
-				<option>{{market_option1}}</option>
-				<option>{{market_option2}}</option>
-				<option>{{market_option3}}</option>
-				<option>{{market_option4}}</option>
-				<option>{{market_option5}}</option>
-			</select>
-		</div>
-		<div class="col-md-3">
-			<label>Confidence Level</label><br>
-			<select class="form-control">
-				<option>Select Confidence Level</option>
-				<option>{{confidence_level_option1}}</option>
-				<option>{{confidence_level_option2}}</option>
-				<option>{{confidence_level_option3}}</option>
-			</select>
-		</div>
-		<div class="col-md-6">
-			<label>Product</label><br>
-			<input type="text" class="form-control" placeholder="search">
-		</div>
-	</div>
-	<br>
-	<div class="col-md-12">
-		<div ui-grid="{ data: myData }" class="grid"></div>
-	</div>
-</section>
-
-
-</body>
 </html>
