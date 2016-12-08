@@ -6,7 +6,8 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
       $scope.myData = data;
 
       var array = $scope.myData;
-      
+
+      // loop for unique market values
       var market_result = [];
       var market =[];
       loop1: for (var i = 0; i < array.length; i++) {
@@ -22,6 +23,7 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
       $scope.market = market;
 
 
+      // loop for unique confidence_level values
       var confidence_level_result = [];
       var confidence_level = [];
       loop2: for (var j = 0; j < array.length; j++) {
@@ -35,7 +37,77 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
           confidence_level.push({'level' : Cname});
       }
       $scope.level = confidence_level;
-      
 
-    });
-}]);
+      
+      // loop for unique confidence_Product values
+      var consequent_product_result = [];
+      var consequent_product = [];
+      loop2: for (var k = 0; k < array.length; k++) {
+          var CPname = array[k].Consequent_Product;
+          for (var k2 = 0; k2 < consequent_product_result.length; k2++) {
+              if (consequent_product_result[k2] == CPname) {
+                  continue loop2;
+              }
+          }
+          consequent_product_result.push(CPname);
+          consequent_product.push({'cprod' : CPname});
+      }
+      $scope.cproduct = consequent_product; //unique value of confidence_Product
+
+      //loop for all confidence_Product values
+      var consq_prd = [];
+      for (var i = 0; i < array.length; i++) {
+          var consq = array[i].Consequent_Product;
+          consq_prd.push(consq);
+      }
+      $scope.c_prod = consq_prd; //all values of confidence_Product
+
+
+      //count of unique confidence_Product value
+      var countobj = [];
+      for (i = 0; i < consequent_product_result.length; i++){
+          var xxx = consequent_product_result[i];
+          var count = 0;
+          for(j = 0; j < consq_prd.length; j++){
+            if(consequent_product_result[i] == consq_prd[j]){
+              count++;
+            }
+           }
+        countobj.push({'label' : xxx , 'y' : count})
+      }
+      
+      // $scope.width = 800;
+      // $scope.height = 400;
+      // $scope.yAxis = "Count";
+      // $scope.xAxis = "Consequent_Product"
+
+      // $scope.data = countobj;
+      
+      // $scope.num = 0;
+      // var arrLength = $scope.data.length;
+      // for (var i = 0; i < arrLength; i++) {
+      //   if ($scope.data[i].value > $scope.num)
+      //   $scope.num = $scope.data[i].value;
+      // }
+
+    window.onload = function () {
+	var chart = new CanvasJS.Chart("chartContainer", {
+		theme: "theme2",//theme1
+		title:{
+			text: "Basic Column Chart - CanvasJS"              
+		},
+		animationEnabled: false,   // change to true
+		data: [              
+		{
+			// Change type to "bar", "area", "spline", "pie",etc.
+			type: "column",
+			dataPoints: countobj
+		}
+		]
+	});
+	chart.render();
+}
+    
+    });//http responce
+
+}]);//controller
