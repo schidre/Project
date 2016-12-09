@@ -75,39 +75,29 @@ app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
            }
         countobj.push({'label' : xxx , 'y' : count})
       }
-      
-      // $scope.width = 800;
-      // $scope.height = 400;
-      // $scope.yAxis = "Count";
-      // $scope.xAxis = "Consequent_Product"
 
-      // $scope.data = countobj;
-      
-      // $scope.num = 0;
-      // var arrLength = $scope.data.length;
-      // for (var i = 0; i < arrLength; i++) {
-      //   if ($scope.data[i].value > $scope.num)
-      //   $scope.num = $scope.data[i].value;
-      // }
+      // graph 
+    var chart = new CanvasJS.Chart("chartContainer", {
 
-    window.onload = function () {
-	var chart = new CanvasJS.Chart("chartContainer", {
-		theme: "theme2",//theme1
+		theme: "theme4",//theme1
 		title:{
-			text: "Basic Column Chart - CanvasJS"              
+			text: " consequent product "              
 		},
+		axisX:{
+           interval: 1
+         },
 		animationEnabled: false,   // change to true
 		data: [              
 		{
+			indexLabelFontSize: 10,
 			// Change type to "bar", "area", "spline", "pie",etc.
 			type: "column",
 			dataPoints: countobj
 		}
 		]
 	});
+
 	chart.render();
-}
-    
     });//http responce
 
 }]);//controller

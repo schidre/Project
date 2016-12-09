@@ -22,13 +22,13 @@
       <nav class="navbar navbar-inverse">
         <h3 class="head">Kogentix</h3>
       </nav>
-      <section>
+	  <section>
         <div class="col-md-12">
           <div class="col-md-3">
             <label>Market</label><br>
             <select class="form-control"  ng-model="searchlist.Market">
                 <option  ng-repeat="m in market" value="{{m.name}}">{{m.name}}</option>
-              </select>
+            </select>
           </div>
           <div class="col-md-3">
             <label>Confidence Level</label><br>
@@ -67,19 +67,7 @@
           </table>
         </div>
         <div class="col-md-12">
-          <!-- <ul class="chart" style="width:{{width}}px; height:{{height}}px;">
-            
-            <div class="y" style="width:{{height}}px;">{{yAxis}}</div>
-            <div class="x">{{xAxis}}</div>
-          
-            <li ng-repeat="bar in data" class="bar" 
-                style="height:{{bar.value / num * height}}px; width:{{width / data.length - 10}}px; left:{{$index / data.length * width}}px;">
-               <span class="bar-text">{{bar.label}}:{{bar.value}}</span>
-            </li>
-          </ul> -->
-
-          <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-          
+            <div id="chartContainer" style="height: 500px; width: 100%;"></div>
         </div>
       </section>
       
